@@ -244,6 +244,11 @@ var runnerTexture = new THREE.ImageUtils.loadTexture( 'run.png' );
 	var runner = new THREE.Mesh(runnerGeometry, runnerMaterial);
 	runner.position.set(-100,25,0);
 	scene.add(runner);
+    
+    
+    onRenderFcts.push(function (delta) {
+			mesh.rotation.x += Math.PI * delta
+		})
         
         
 
