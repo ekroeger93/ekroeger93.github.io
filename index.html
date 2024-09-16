@@ -256,13 +256,13 @@
 	var runnerMaterial = new THREE.MeshBasicMaterial( { map: runnerTexture, side:THREE.DoubleSide } );
 	var runnerGeometry = new THREE.PlaneGeometry(50, 50, 1, 1);
 	var runner = new THREE.Mesh(runnerGeometry, runnerMaterial);
-	runner.position.set(0,runnerGeometry.parameters.height / 2 ,0);
+	runner.position.set(0,0 ,0);
 	scene.add(runner);
     
     
-    //onRenderFcts.push(function (delta) {
-			//runnerMaterial.rotation.x += Math.PI * delta
-		//})
+    onRenderFcts.push(function (delta) {
+			runnerMaterial.rotation.x += Math.PI * delta
+		})
         
     //    
         
