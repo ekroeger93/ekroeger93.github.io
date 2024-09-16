@@ -175,7 +175,8 @@
 			window.arMarkerControls = arMarkerControls;
 		}
 
-
+var runnerTexture = new THREE.ImageUtils.loadTexture( 'run.png' );
+        
 		function getSourceOrientation() {
 			if (!arToolkitSource) {
 				return null;
@@ -237,7 +238,7 @@
         
         
         
-var runnerTexture = new THREE.ImageUtils.loadTexture( 'run.png' );
+
 	annie = new TextureAnimator( runnerTexture, 10, 1, 10, 75 ); // texture, #horiz, #vert, #total, duration.
 	var runnerMaterial = new THREE.MeshBasicMaterial( { map: runnerTexture, side:THREE.DoubleSide } );
 	var runnerGeometry = new THREE.PlaneGeometry(50, 50, 1, 1);
