@@ -6,6 +6,13 @@
 <script src="../build/ar-threex.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
+
+
+<head>
+<title>AR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
 <body style='font-family: Monospace;'>
 	<div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
 		<a href="https://github.com/AR-js-org/AR.js/" target="_blank">AR.js</a> - three.js camera transform
@@ -50,14 +57,14 @@
 
 		var arToolkitSource = new THREEx.ArToolkitSource({
 			// to read from the webcam
-			//sourceType: 'webcam',
+			sourceType: 'webcam',
 
 			//sourceWidth: window.innerWidth > window.innerHeight ? 640 : 480,
 			//sourceHeight: window.innerWidth > window.innerHeight ? 480 : 640,
 
 			 // to read from an image
-			 sourceType : 'image',
-			 sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',
+			 //sourceType : 'image',
+			 //sourceUrl : THREEx.ArToolkitContext.baseURL + '../data/images/img.jpg',
 
 			// to read from a video
 			// sourceType : 'video',
