@@ -24,7 +24,7 @@
 		//		Init
 		//////////////////////////////////////////////////////////////////////////////////
 //var runnerTexture = new THREE.ImageUtils.loadTexture( 'run.png' );
-const runnerTexture = new THREE.TextureLoader().load('run.png' ); 
+
         
 		// init renderer
 		var renderer = new THREE.WebGLRenderer({
@@ -53,6 +53,9 @@ const runnerTexture = new THREE.TextureLoader().load('run.png' );
 		var camera = new THREE.Camera();
 		scene.add(camera);
 
+        
+        const runnerTexture = new THREE.TextureLoader().load('run.png'); 
+        
 		////////////////////////////////////////////////////////////////////////////////
 		//          handle arToolkitSource
 		////////////////////////////////////////////////////////////////////////////////
