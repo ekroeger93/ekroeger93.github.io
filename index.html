@@ -104,6 +104,45 @@
 		//          initialize arToolkitContext
 		////////////////////////////////////////////////////////////////////////////////
 
+        
+        function TextureAnimator(texture, tilesHoriz, tilesVert, tileDispDuration) 
+{ 
+  let obj = {};
+
+  obj.texture = texture;
+  obj.tilesHorizontal = tilesHoriz;
+  obj.tilesVertical = tilesVert;
+  obj.tileDisplayDuration = tileDispDuration;
+
+  obj.numberOfTiles = tilesHoriz * tilesVert;
+
+  obj.texture.wrapS = THREE.RepeatWrapping;   
+  obj.texture.wrapT = THREE.RepeatWrapping;   
+  obj.texture.repeat.set( 1/tilesHoriz, 1/tilesVert );
+  obj.currentTile = 0;
+
+  obj.nextFrame = function()
+  {
+    obj.currentTile++;
+    if (obj.currentTile == obj.numberOfTiles)
+      obj.currentTile = 0;
+
+    let currentColumn = obj.currentTile % obj.tilesHorizontal;
+    obj.texture.offset.x = currentColumn / obj.tilesHorizontal;
+
+    let currentRow = Math.floor( obj.currentTile / obj.tilesHorizontal );
+    obj.texture.offset.y = obj.tilesVertical - currentRow / obj.tilesVertical;
+  };
+
+  obj.start = function()
+  { obj.intervalID = setInterval(obj.nextFrame, obj.tileDisplayDuration); };
+
+  obj.stop = function()
+  { clearInterval(obj.intervalID); };
+
+  obj.start();
+  return obj;
+}   
 
 		function initARContext() { // create atToolkitContext
 			arToolkitContext = new THREEx.ArToolkitContext({
@@ -174,25 +213,39 @@
 		//////////////////////////////////////////////////////////////////////////////////
 
 		// add a torus knot
-		var geometry = new THREE.BoxGeometry(1, 1, 1);
-		var material = new THREE.MeshNormalMaterial({
-			transparent: true,
-			opacity: 0.5,
-			side: THREE.DoubleSide
-		});
-		var mesh = new THREE.Mesh(geometry, material);
-		mesh.position.y = geometry.parameters.height / 2
-		scene.add(mesh);
-
-		var geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16);
-		var material = new THREE.MeshNormalMaterial();
-		var mesh = new THREE.Mesh(geometry, material);
-		mesh.position.y = 0.5
-		scene.add(mesh);
-
-		onRenderFcts.push(function (delta) {
-			mesh.rotation.x += Math.PI * delta
-		})
+		//var geometry = new THREE.BoxGeometry(1, 1, 1);
+		//var material = new THREE.MeshNormalMaterial({
+		//	transparent: true,
+		//	opacity: 0.5,
+		//	side: THREE.DoubleSide
+		//});
+		//var mesh = new THREE.Mesh(geometry, material);
+		//mesh.position.y = geometry.parameters.height / 2
+		//scene.add(mesh);
+//
+		//var geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16);
+		//var material = new THREE.MeshNormalMaterial();
+		//var mesh = new THREE.Mesh(geometry, material);
+		//mesh.position.y = 0.5
+		//scene.add(mesh);
+//
+		//onRenderFcts.push(function (delta) {
+		//	mesh.rotation.x += Math.PI * delta
+		//})
+  //      
+        
+        
+        
+        
+var runnerTexture = new THREE.ImageUtils.loadTexture( 'run.png' );
+	annie = new TextureAnimator( runnerTexture, 10, 1, 10, 75 ); // texture, #horiz, #vert, #total, duration.
+	var runnerMaterial = new THREE.MeshBasicMaterial( { map: runnerTexture, side:THREE.DoubleSide } );
+	var runnerGeometry = new THREE.PlaneGeometry(50, 50, 1, 1);
+	var runner = new THREE.Mesh(runnerGeometry, runnerMaterial);
+	runner.position.set(-100,25,0);
+	scene.add(runner);
+        
+        
 
 		//////////////////////////////////////////////////////////////////////////////////
 		//		render the whole thing on the page
