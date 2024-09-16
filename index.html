@@ -23,7 +23,8 @@
 		//////////////////////////////////////////////////////////////////////////////////
 		//		Init
 		//////////////////////////////////////////////////////////////////////////////////
-
+var runnerTexture = new THREE.ImageUtils.loadTexture( 'run.png' );
+        
 		// init renderer
 		var renderer = new THREE.WebGLRenderer({
 			antialias: true,
@@ -175,8 +176,7 @@
 			window.arMarkerControls = arMarkerControls;
 		}
 
-var runnerTexture = new THREE.ImageUtils.loadTexture( 'run.png' );
-        
+
 		function getSourceOrientation() {
 			if (!arToolkitSource) {
 				return null;
