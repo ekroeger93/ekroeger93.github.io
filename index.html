@@ -35,6 +35,7 @@
         
         
         const runnerTexture = new THREE.TextureLoader().load('run.png'); 
+        const ghostAnimTexture = new THREE.TextureLoader().load('ghostAnim.png'); 
         
 		// init renderer
 		var renderer = new THREE.WebGLRenderer({
@@ -252,24 +253,37 @@
         
         
 
-	annie = new TextureAnimator( runnerTexture, 10, 1, 100, 10 ); // texture, #horiz, #vert, #total, duration.
-	var runnerMaterial = new THREE.MeshBasicMaterial( { 
-        map: runnerTexture, 
+	annie = new TextureAnimator( ghostAnimTexture, 4, 1, 100, 10 ); // texture, #horiz, #vert, #total, duration.
+
+        
+        var runnerMaterial = new THREE.MeshBasicMaterial( { 
+        map: ghostAnimTexture, 
         side:THREE.DoubleSide,
         transparent: true,
         opacity: 1
     } );
 	var runnerGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
 	var runner = new THREE.Mesh(runnerGeometry, runnerMaterial);
+    
+
 	runner.position.set(
-                        (runnerGeometry.parameters.width /2) -.5,
+                        (runnerGeometry.parameters.width /2) -.5
+        ,
                         runnerGeometry.parameters.height/2 ,0);
+        
 	runner.rotation.setFromVector3(new THREE.Vector3( Math.PI / 2, 0, Math.PI));
         
+   // runner.position.y =runnerGeometry.parameters.height/2 ;
+        
+        var ocs=0;
+        
+        
+    scene.add(runner);
     
         
-        scene.add(runner);
-    
+ 
+        
+       
     
 //    onRenderFcts.push(function (delta) {
 		//	runnerMaterial.rotation.x += Math.PI * delta
@@ -338,6 +352,8 @@ function consoleInput( data ) {
         console.log( e.stack );
     }
 }
+        
+       
     
     </script>
     
