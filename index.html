@@ -246,24 +246,35 @@
 		//onRenderFcts.push(function (delta) {
 		//	mesh.rotation.x += Math.PI * delta
 		//})
-  //      
+  ////      
         
         
         
         
 
-	annie = new TextureAnimator( runnerTexture, 10, 1, 10, 75 ); // texture, #horiz, #vert, #total, duration.
-	var runnerMaterial = new THREE.MeshBasicMaterial( { map: runnerTexture, side:THREE.DoubleSide } );
-	var runnerGeometry = new THREE.PlaneGeometry(50, 50, 1, 1);
+	annie = new TextureAnimator( runnerTexture, 10, 1, 100, 10 ); // texture, #horiz, #vert, #total, duration.
+	var runnerMaterial = new THREE.MeshBasicMaterial( { 
+        map: runnerTexture, 
+        side:THREE.DoubleSide,
+        transparent: true,
+        opacity: 1
+    } );
+	var runnerGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
 	var runner = new THREE.Mesh(runnerGeometry, runnerMaterial);
-	runner.position.set(0,runnerGeometry.parameters.height / 2 ,10);
-	scene.add(runner);
-    
-    
-    onRenderFcts.push(function (delta) {
-		//	runnerMaterial.rotation.x += Math.PI * delta
-		})
+	runner.position.set(
+                        (runnerGeometry.parameters.width /2) -.5,
+                        runnerGeometry.parameters.height/2 ,0);
+	runner.rotation.setFromVector3(new THREE.Vector3( Math.PI / 2, 0, Math.PI));
         
+    
+        
+        scene.add(runner);
+    
+    
+//    onRenderFcts.push(function (delta) {
+		//	runnerMaterial.rotation.x += Math.PI * delta
+	//	})
+ //       
     //    
         
 
@@ -290,5 +301,57 @@
 				onRenderFct(deltaMsec / 1000, nowMsec / 1000)
 			})
 		})
-	</script>
+	
+    </script>
+    
+    
+    <script>
+    
+    
+    
+    var output = document.createElement('pre');
+document.body.appendChild(output);
+
+// Reference to native method(s)
+var oldLog = console.log;
+
+console.log = function( ...items ) {
+
+    // Call native method first
+    oldLog.apply(this,items);
+
+    // Use JSON to transform objects, all others display normally
+    items.forEach( (item,i)=>{
+        items[i] = (typeof item === 'object' ? JSON.stringify(item,null,4) : item);
+    });
+    output.innerHTML += items.join(' ') + '<br />';
+
+};
+
+// You could even allow Javascript input...
+function consoleInput( data ) {
+    // Print it to console as typed
+    console.log( data + '<br />' );
+    try {
+        console.log( eval( data ) );
+    } catch (e) {
+        console.log( e.stack );
+    }
+}
+    
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </body>
