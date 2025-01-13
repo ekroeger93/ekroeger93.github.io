@@ -173,7 +173,6 @@
 				arToolkitContext.arController.orientation = getSourceOrientation();
 				arToolkitContext.arController.options.orientation = getSourceOrientation();
 
-				console.log('arToolkitContext', arToolkitContext);
 				window.arToolkitContext = arToolkitContext;
 			})
 
@@ -230,69 +229,63 @@
 		//////////////////////////////////////////////////////////////////////////////////
 
 		// add a torus knot
-		//var geometry = new THREE.BoxGeometry(1, 1, 1);
-		//var material = new THREE.MeshNormalMaterial({
-		//	transparent: true,
-		//	opacity: 0.5,
-		//	side: THREE.DoubleSide
-		//});
-		//var mesh = new THREE.Mesh(geometry, material);
-		//mesh.position.y = geometry.parameters.height / 2
-		//scene.add(mesh);
-//
-		//var geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16);
-		//var material = new THREE.MeshNormalMaterial();
-		//var mesh = new THREE.Mesh(geometry, material);
-		//mesh.position.y = 0.5
-		//scene.add(mesh);
-//
-		//onRenderFcts.push(function (delta) {
-		//	mesh.rotation.x += Math.PI * delta
-		//})
-  ////      
+		var geometry = new THREE.BoxGeometry(1, 1, 1);
+		var material = new THREE.MeshNormalMaterial({
+			transparent: true,
+			opacity: 0.5,
+			side: THREE.DoubleSide
+		});
+		var mesh = new THREE.Mesh(geometry, material);
+		mesh.position.y = geometry.parameters.height / 2
+		scene.add(mesh);
+
+		var geometry = new THREE.TorusKnotGeometry(0.3, 0.1, 64, 16);
+		var material = new THREE.MeshNormalMaterial();
+		var mesh = new THREE.Mesh(geometry, material);
+		mesh.position.y = 0.5
+		scene.add(mesh);
+
+		onRenderFcts.push(function (delta) {
+			mesh.rotation.x += Math.PI * delta
+		})
+  //      
         
         
         
         
 
-	annie = new TextureAnimator( ghostAnimTexture, 4, 1, 100, 10 ); // texture, #horiz, #vert, #total, duration.
+	// annie = new TextureAnimator( ghostAnimTexture, 4, 1, 100, 10 ); // texture, #horiz, #vert, #total, duration.
 
         
-        var runnerMaterial = new THREE.MeshBasicMaterial( { 
-        map: ghostAnimTexture, 
-        side:THREE.DoubleSide,
-        transparent: true,
-        opacity: 1
-    } );
-	var runnerGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
-	var runner = new THREE.Mesh(runnerGeometry, runnerMaterial);
+ //        var runnerMaterial = new THREE.MeshBasicMaterial( { 
+ //        map: ghostAnimTexture, 
+ //        side:THREE.DoubleSide,
+ //        transparent: true,
+ //        opacity: 1
+ //    } );
+	// var runnerGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
+	// var runner = new THREE.Mesh(runnerGeometry, runnerMaterial);
     
 
-	runner.position.set(
-                        (runnerGeometry.parameters.width /2) -.5
-        ,
-                        runnerGeometry.parameters.height/2 ,0);
+	// runner.position.set(
+ //                        (runnerGeometry.parameters.width /2) -.5
+ //        ,
+ //                        runnerGeometry.parameters.height/2 ,0);
         
-	runner.rotation.setFromVector3(new THREE.Vector3( Math.PI / 2, 0, Math.PI));
+	// runner.rotation.setFromVector3(new THREE.Vector3( Math.PI / 2, 0, Math.PI));
         
-   // runner.position.y =runnerGeometry.parameters.height/2 ;
+ //   // runner.position.y =runnerGeometry.parameters.height/2 ;
         
-        var ocs=0;
+ //        var ocs=0;
         
         
-    scene.add(runner);
+ //    scene.add(runner);
     
         
  
         
        
-    
-//    onRenderFcts.push(function (delta) {
-		//	runnerMaterial.rotation.x += Math.PI * delta
-	//	})
- //       
-    //    
-        
+
 
 		//////////////////////////////////////////////////////////////////////////////////
 		//		render the whole thing on the page
